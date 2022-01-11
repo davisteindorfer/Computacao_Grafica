@@ -1,6 +1,6 @@
 #include "Ponto.hpp";
 
-
+Ponto::Ponto() {}
 Ponto::Ponto(double x1, double y1, double z1) {
     this->x = x1;
     this->y = y1;

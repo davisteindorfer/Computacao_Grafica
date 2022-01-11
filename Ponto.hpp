@@ -1,10 +1,12 @@
 #ifndef Ponto_HPP;
 #define Ponto_HPP;
 
+
 class Ponto{
     private:
         double x,y,z;
     public:
+    Ponto();
     Ponto(double, double, double);
     void set_x(double);
     void set_y(double);
