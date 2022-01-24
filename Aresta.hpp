@@ -6,6 +6,8 @@
 class Aresta{
     private:
         Ponto a,b;
+    public:    
+    Aresta();
     Aresta(Ponto, Ponto);
     void set_a(Ponto);
     void set_b(Ponto);

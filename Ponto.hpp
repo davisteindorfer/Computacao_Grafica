@@ -6,6 +6,7 @@ class Ponto{
     private:
         double x,y,z;
     public:
+    
     Ponto();
     Ponto(double, double, double);
     void set_x(double);
