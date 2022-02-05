@@ -7,7 +7,7 @@
 class Cubo : public Objeto {
     public:
     Cubo(vector<Ponto>, vector<Aresta>, vector<Face>);
-    void intercessãoreta(Raio);
+    Ponto intercessãoCuboReta(Raio);
 };
 
 #endif

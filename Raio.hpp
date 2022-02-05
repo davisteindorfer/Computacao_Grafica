@@ -4,16 +4,15 @@
 #include "Vector.hpp"
 
 class Raio {
-    private:
+    public:
         Ponto orig;
         Vector dir;
-    public:
         Raio() {}
         Raio(Ponto,Vector);
-        Ponto get_origin();
+        Ponto* get_origin();
         Vector get_direction();
 
-        Ponto equacao_reta(double t);   
+        Ponto* equacao_reta(const double &t);   
 };
 
 #endif
