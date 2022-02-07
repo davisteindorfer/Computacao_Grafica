@@ -2,21 +2,21 @@
 #define CILINDRO_HPP
 #include "operações.hpp"
 #include "Objeto.hpp"
-// #include "PontoIntersecao.hpp"
 #include "Plano.hpp"
 
-class Cilindro : public Objeto{
+class Cilindro{
 public:
-    string nome;
-    float altura;
-    float raio;
+    double altura;
+    double raio;
     Ponto centro;
     Ponto centroSup;
     Plano baseInf;
     Plano baseSup;
-    Vetor normal;
-    Cilindro(float pAltura, float pRaio, Ponto pCentro, Vetor pNormal, Material *m);
-    tuple<Ponto*,Objeto*> IntersecaoReta(Ponto* pP0, const Vetor &pV0) override;
+    Vector normal;
+    Cilindro(double pAltura, double pRaio, Ponto pCentro, Vector pNormal);
+    tuple<Ponto*,Cilindro*> IntersecaoReta(Ponto* pP0, Vector &pV0);
+    Ponto* PrimeiraIntersecao(Ponto &pP0, Vector &pVetor0);
+    bool ValidacaoPontoLateral(Ponto &p_int);
 };
 
 

@@ -4,12 +4,12 @@
 #include "Ponto.cpp";
 #include <cmath>
 class Vector{
-    private:
+    public:
         double x;
         double y;
         double z;
-    public:
     Vector();
+    Vector(Ponto*, Ponto*);
     Vector(Ponto, Ponto);
     Vector(double, double, double);
     void set_x(double);
@@ -53,6 +53,7 @@ inline Vector operator+(Vector u, Vector v) {
 inline Ponto operator+(Ponto u, Vector v) {
     return Ponto(u.get_x() + v.get_x(), u.get_y() + v.get_y(), u.get_z() + v.get_z());
 }
-
-
+inline Vector operator-( Vector p1, Vector p2) {
+    return Vector(p2.x - p1.x, p2.y - p1.y, p2.z - p1.z);
+}
 #endif

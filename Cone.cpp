@@ -1,13 +1,19 @@
 #include <c++/cmath>
 #include "Cone.hpp"
 #include "Plano.hpp"
-
-Cone::Cone(double pAltura, double pRaio, Ponto* pCentro, Vector pNormal){
+#include <tuple>
+Cone::Cone(double pAltura, double pRaio, Ponto pCentro, Vector pNormal){
     this->altura = pAltura;
     this->raio = pRaio;
     this->centro = pCentro;
     this->normal = pNormal;
+    this->base = new Plano(centro, normal);
 };
+
+tuple<Ponto*,Cone*> Cone::IntersecaoReta(Ponto* pP0, Vector &pV0) {
+
+    return make_pair(PrimeiraIntersecao(*pP0, pV0), this);
+}
 
 bool Cone::ValidacaoPontoCone(Ponto* vertice, Ponto* p_int){
 
@@ -33,14 +39,14 @@ Ponto* Cone::IntersecaoRetaBase(Ponto* centro, Ponto& pP0, Vector &pVetor0){
 }
 
 
-Ponto *Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
+Ponto* Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
     //Vetor auxiliar para calcular o vertice do cone (H*n)
     Vector vetor_aux = normal;
     vetor_aux *= altura;
     
 
-    Ponto vertice = Ponto(this->centro->x + vetor_aux.x, this->centro->y + vetor_aux.y,
-        this->centro->z + vetor_aux.z);
+    Ponto vertice = Ponto(this->centro.x + vetor_aux.x, this->centro.y + vetor_aux.y,
+        this->centro.z + vetor_aux.z);
 
     //vetor d normalizado
     Vector d = operações::NormalizaVetor(pVetor0);
@@ -99,7 +105,7 @@ Ponto *Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
 
         if (tratamento_int1)
             p_int1 = p_teste1;
-        else if((p_teste1 = Cone::IntersecaoRetaBase(this->centro, pP0, d)) != nullptr)
+        else if((p_teste1 = Cone::IntersecaoRetaBase(&this->centro, pP0, d)) != nullptr)
             p_int1 = p_teste1;
 
         double p_int1_dis = p_int1 != nullptr ? operações::distanciaEntrePontos(p_int1, &pP0) : 0;
@@ -109,7 +115,7 @@ Ponto *Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
                 p_int1 = p_teste2;
             }
         }
-        else if((p_teste2 = Cone::IntersecaoRetaBase(this->centro, pP0, d)) != nullptr &&
+        else if((p_teste2 = Cone::IntersecaoRetaBase(&this->centro, pP0, d)) != nullptr &&
             operações::distanciaEntrePontos(p_teste2, &pP0) < p_int1_dis){
             p_int1 = p_teste2;
         }
@@ -122,13 +128,14 @@ Ponto *Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
 
         if (tratamento_int1)
             p_int1 = p_teste1;
-        if((p_teste1 = Cone::IntersecaoRetaBase(this->centro, pP0, d)) != nullptr &&
+        if((p_teste1 = Cone::IntersecaoRetaBase(&this->centro, pP0, d)) != nullptr &&
             (p_int1 == nullptr || operações::distanciaEntrePontos(p_teste1, &pP0) < operações::distanciaEntrePontos(p_int1, &pP0))) {
 
-            p_int1 = Cone::IntersecaoRetaBase(this->centro, pP0, d);
+            p_int1 = Cone::IntersecaoRetaBase(&this->centro, pP0, d);
         }
 
     }
+    
 
     return p_int1;
 }
