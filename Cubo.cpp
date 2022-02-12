@@ -1,10 +1,12 @@
 #include "Cubo.hpp";
 #include "operações.hpp";
 #include <tuple>
-Cubo::Cubo(vector<Ponto> lista_pontos, vector<Aresta> lista_arestas, vector<Face> lista_faces){
+Cubo::Cubo(vector<Ponto> lista_pontos, vector<Aresta> lista_arestas, vector<Face> lista_faces,Material m, int id){
     this->Lista_De_Pontos = lista_pontos;
     this->Lista_De_Aresta = lista_arestas;
     this->Lista_De_Faces = lista_faces;
+    this->material = m;
+    this->id = id;
 };
 
 tuple<Ponto*,Cubo*> Cubo::intercessãoCuboReta(Raio r){
@@ -12,7 +14,7 @@ tuple<Ponto*,Cubo*> Cubo::intercessãoCuboReta(Raio r){
     for(int i = 0; i < Lista_De_Faces.size(); i++){
         Vector vetor1 = Vector(Lista_De_Faces[i].get_p1p2().get_a(),Lista_De_Faces[i].get_p1p2().get_b());
         Vector vetor2 = Vector(Lista_De_Faces[i].get_p2p3().get_a(),Lista_De_Faces[i].get_p2p3().get_b());
-        Vector normal = operações::ProdutoVetorial(vetor1, vetor2);
+        normal = operações::ProdutoVetorial(vetor1, vetor2);
         Plano p = Plano(Lista_De_Faces[i].get_p1p2().get_a(), normal);
         Ponto* ponto = p.IntersecaoRaioPlano(r);
 
@@ -24,7 +26,7 @@ tuple<Ponto*,Cubo*> Cubo::intercessãoCuboReta(Raio r){
 
             if (Lista_De_Faces[i].ValidacaoPontoFace(p1p,p2p,p3p)) {
                 intFace.emplace_back(make_pair(ponto, Lista_De_Faces[i]));
-                Vector normal2 = normal;
+                normal = p.normal;
 
             } else {
                 p1p = Vector(Lista_De_Faces[i + 1].get_p1p2().get_a(), *ponto);
@@ -39,7 +41,7 @@ tuple<Ponto*,Cubo*> Cubo::intercessãoCuboReta(Raio r){
 
                     Vector vetor22 = Vector(Lista_De_Faces[i + 1].get_p2p3().get_a(),Lista_De_Faces[i + 1].get_p2p3().get_b());
 
-                    Vector normal2 = operações::ProdutoVetorial(vetor11, vetor22);
+                    normal = operações::ProdutoVetorial(vetor11, vetor22);
                 } else {
                     delete ponto;
                 }
@@ -58,14 +60,14 @@ tuple<Ponto*,Cubo*> Cubo::intercessãoCuboReta(Raio r){
 
                 Vector vetor22 = Vector(intFace[0].second.get_p2p3().get_a(),intFace[0].second.get_p2p3().get_b());
                
-                Vector normal = operações::ProdutoVetorial(vetor11, vetor22);
+                normal = operações::ProdutoVetorial(vetor11, vetor22);
             }
             else {
                 Vector vetor11 = Vector(intFace[1].second.get_p1p2().get_a(),intFace[1].second.get_p1p2().get_b());
 
                 Vector vetor22 = Vector(intFace[1].second.get_p2p3().get_a(),intFace[1].second.get_p2p3().get_b());
                
-                Vector normal = operações::ProdutoVetorial(vetor11, vetor22);
+                normal = operações::ProdutoVetorial(vetor11, vetor22);
             }
         }
         else {
@@ -73,7 +75,7 @@ tuple<Ponto*,Cubo*> Cubo::intercessãoCuboReta(Raio r){
 
                 Vector vetor22 = Vector(intFace[0].second.get_p2p3().get_a(),intFace[0].second.get_p2p3().get_b());
                
-                Vector normal = operações::ProdutoVetorial(vetor11, vetor22);
+                normal = operações::ProdutoVetorial(vetor11, vetor22);
         }
     }
     if(intFace.empty()) {
@@ -91,4 +93,7 @@ tuple<Ponto*,Cubo*> Cubo::intercessãoCuboReta(Raio r){
         }
     }
 
+}
+Vector Cubo::calcularNormal(Ponto* pi){
+    return normal;
 }

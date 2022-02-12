@@ -10,7 +10,8 @@ public:
 
     Plano();
     Plano(Ponto, Vector);
-    Ponto IntersecaoRaioPlano(Raio);
+    
+    Ponto* IntersecaoRaioPlano(Raio);
 };
 
 

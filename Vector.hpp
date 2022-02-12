@@ -10,6 +10,7 @@ class Vector{
         double z;
     Vector();
     Vector(Ponto*, Ponto*);
+    Vector(Vector, Vector);
     Vector(Ponto, Ponto);
     Vector(double, double, double);
     void set_x(double);

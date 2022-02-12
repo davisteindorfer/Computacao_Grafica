@@ -3,11 +3,14 @@
 #include "Objeto.hpp";
 #include "Objeto.cpp";
 #include "Raio.cpp";
+#include <tuple>
 
 class Cubo : public Objeto {
     public:
-    Cubo(vector<Ponto>, vector<Aresta>, vector<Face>);
-    Ponto intercessãoCuboReta(Raio);
+    Vector normal;
+    Cubo(vector<Ponto>, vector<Aresta>, vector<Face>,Material, int);
+    tuple<Ponto*,Cubo*> intercessãoCuboReta(Raio);
+    Vector calcularNormal(Ponto* pi);
 };
 
 #endif

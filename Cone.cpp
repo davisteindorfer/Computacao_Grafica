@@ -2,12 +2,14 @@
 #include "Cone.hpp"
 #include "Plano.hpp"
 #include <tuple>
-Cone::Cone(double pAltura, double pRaio, Ponto pCentro, Vector pNormal){
+Cone::Cone(double pAltura, double pRaio, Ponto pCentro, Vector pNormal, Material m, int id){
     this->altura = pAltura;
     this->raio = pRaio;
     this->centro = pCentro;
     this->normal = pNormal;
     this->base = new Plano(centro, normal);
+    this->material = m;
+    this->id = id;
 };
 
 tuple<Ponto*,Cone*> Cone::IntersecaoReta(Ponto* pP0, Vector &pV0) {
@@ -138,4 +140,27 @@ Ponto* Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
     
 
     return p_int1;
+}
+Vector Cone::calcularNormal(Ponto* pi){
+    Vector vetor_aux = normal;
+    vetor_aux *= altura;
+
+    Ponto* Vertice = new Ponto{centro.x + vetor_aux.x, centro.y + vetor_aux.y,
+                                           centro.z + vetor_aux.z};
+
+    Vector PImenosCB = Vector(centro, *pi);
+
+    double aux = operações::ProdutoEscalar(PImenosCB, normal);
+    Ponto* pe = operações::equacao_reta(aux, Raio(centro, normal));
+
+
+    Vector PImenosPE = Vector(*pe, *pi);
+    Vector PiV = Vector(*pi, *Vertice);
+
+    Vector T = operações::ProdutoVetorial(PiV, PImenosPE);
+    Vector N = operações::ProdutoVetorial(T, PiV);
+
+    delete pe;
+    delete Vertice;
+    return operações::NormalizaVetor(N);
 }

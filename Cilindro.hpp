@@ -4,7 +4,7 @@
 #include "Objeto.hpp"
 #include "Plano.hpp"
 
-class Cilindro{
+class Cilindro : public Objeto{
 public:
     double altura;
     double raio;
@@ -13,10 +13,11 @@ public:
     Plano baseInf;
     Plano baseSup;
     Vector normal;
-    Cilindro(double pAltura, double pRaio, Ponto pCentro, Vector pNormal);
+    Cilindro(double pAltura, double pRaio, Ponto pCentro, Vector pNormal, Material m, int);
     tuple<Ponto*,Cilindro*> IntersecaoReta(Ponto* pP0, Vector &pV0);
     Ponto* PrimeiraIntersecao(Ponto &pP0, Vector &pVetor0);
     bool ValidacaoPontoLateral(Ponto &p_int);
+    Vector calcularNormal(Ponto* pi);
 };
 
 

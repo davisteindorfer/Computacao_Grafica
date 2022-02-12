@@ -2,13 +2,15 @@
 #define ESFERA_HPP
 #include "operações.hpp"
 #include "Objeto.hpp"
-class Esfera : public Objeto {
+#include <tuple>
+class Esfera :public Objeto{
 public:
     string nome;
     float raio;
     Ponto* centro;
-    Esfera(double Raio, Ponto* Centro);
-    
+    Esfera(double, Ponto*,Material, int);
+    tuple<Ponto*,Esfera*> IntersecaoReta(Ponto*, Vector);
+    Vector calcularNormal(Ponto* pi);
 };
 
 

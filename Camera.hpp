@@ -1,23 +1,24 @@
+#ifndef CAMERA_HPP
+#define CAMERA_HPP
 #include "Ponto.hpp"
 #include "Ponto.cpp"
 #include "Vector.hpp"
 #include "Vector.cpp"
 #include "Objeto.hpp"
 #include "Objeto.cpp"
-
+#include <Eigen/core>
 
 class Camera{
-    private:
-        Ponto eye;
-        Ponto lookat;
-        Vector viewup;
     public:
-    Camera(Ponto, Ponto, Vector);
-    Objeto Mundo_camera(Objeto);
-    void set_eye(Ponto);
-    void set_lookat(Ponto);
-    void set_viewup(Vector);
-    Ponto get_eye();
-    Ponto get_lookat();
-    Vector get_viewup();
+        Vector eye;
+        Vector lookat;
+        Vector viewup;
+        Vector ic;
+        Vector jc;
+        Vector kc;
+    Camera(Vector, Vector, Vector);
+    Ponto Mundo_camera(Ponto);
+    void atualizaCamera();
 };
+
+#endif

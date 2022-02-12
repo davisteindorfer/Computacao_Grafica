@@ -8,7 +8,7 @@ Plano::Plano(Ponto p1, Vector v){
 };
 Ponto* Plano::IntersecaoRaioPlano(Raio r1){
 
-    Vector *V = new Vector(r1.get_origin(), p);
+    Vector *V = new Vector(r1.orig, p);
     double produto = operações::ProdutoEscalar(*V, normal);
     double produto1 = operações::ProdutoEscalar(r1.get_direction(), normal);
 

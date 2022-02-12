@@ -3,9 +3,8 @@
 
 
 class Ponto{
-    private:
-        double x,y,z;
     public:
+        double x,y,z;
     
     Ponto();
     Ponto(double, double, double);
@@ -15,6 +14,10 @@ class Ponto{
     double get_x();
     double get_y();
     double get_z();
+    void operator+(Ponto p);
+    void operator*(Ponto p);
+    Ponto operator-(Ponto p);
+    void operator/(Ponto p);
 
 };
 

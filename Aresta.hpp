@@ -4,9 +4,9 @@
 #include "Ponto.cpp"
 
 class Aresta{
-    private:
+    public:
         Ponto a,b;
-    public:    
+        
     Aresta();
     Aresta(Ponto, Ponto);
     void set_a(Ponto);

@@ -5,15 +5,17 @@
 #include <tuple>
 
 
-Cilindro::Cilindro(double pAltura, double pRaio, Ponto pCentro, Vector pNormal){
+Cilindro::Cilindro(double pAltura, double pRaio, Ponto pCentro, Vector pNormal, Material m, int id){
     this->altura = pAltura;
     this->raio = pRaio;
     this->centro = pCentro;
     this->normal = pNormal;
+    this->material = m;
     Vector H_n = normal;
     H_n *= altura;
     centroSup = Ponto{centro.x + H_n.x, centro.y + H_n.y, centro.z + H_n.z};
     baseSup = Plano(centroSup, normal);
+    this->id = id;
 }
 
 tuple<Ponto*,Cilindro*> Cilindro::IntersecaoReta(Ponto* pP0, Vector &pV0){
@@ -110,4 +112,16 @@ Ponto *Cilindro::PrimeiraIntersecao(Ponto &pP0, Vector &pVetor0) {
     }
 
     return p_int1;
+}
+Vector Cilindro::calcularNormal(Ponto* pi){
+    Vector PImenosCB = Vector(centro, *pi);
+    double aux = operações::ProdutoEscalar(PImenosCB, normal);
+    Vector aux2 = normal;
+    aux2 *= aux;
+
+    Ponto pe{centro.x + aux2.x, centro.y + aux2.y, centro.z + aux2.z};
+    Vector PImenosPE = Vector(pe, *pi);
+
+    Vector normalAoPonto = PImenosPE / raio;
+    return normalAoPonto;
 }
