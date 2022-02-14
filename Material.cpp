@@ -15,4 +15,5 @@ vector<double> Material::Arroba(vector<double> v1, vector<double> v2){
     for(int i = 0; i < 3; i++){
         result.push_back(v1[i]*v2[i]);
     }
+    return result;
 };

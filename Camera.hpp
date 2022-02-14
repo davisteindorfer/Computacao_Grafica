@@ -6,8 +6,8 @@
 #include "Vector.hpp"
 
 #include "Objeto.hpp"
-
-#include <Eigen/core>
+#include "operacoes.hpp"
+#include <Eigen/Dense>
 
 class Camera{
     public:

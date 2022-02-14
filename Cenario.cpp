@@ -4,9 +4,9 @@
 std::vector<Objeto> Cenario::lista_de_objetos(){
 
     // Chao
-    Ponto ponto_1_chao = Ponto(0,0,-100);
-    Ponto ponto_2_chao = Ponto(200,0,-100);
-    Ponto ponto_3_chao = Ponto(200,0,100);
+    Ponto ponto_1_chao = Ponto(0,0,-10);
+    Ponto ponto_2_chao = Ponto(20,0,-10);
+    Ponto ponto_3_chao = Ponto(20,0,10);
     Ponto ponto_4_chao = Ponto(0,0,100);
 
     vector<Ponto> lista_pontos_chao;

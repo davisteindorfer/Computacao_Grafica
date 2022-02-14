@@ -32,9 +32,9 @@ vector<vector<vector<double>>> RayCasting::Ray_Casting(Cenario cena, Ponto posic
             //percorrendo objetos do cenario para checar se há interecessao com o raio
 
             for(int t = 0; t < aux.size(); t++){
-                tuple<Ponto*,Objeto*> * aux2 = &aux[t].IntersecaoReta(r);
+                tuple<Ponto*,Objeto*> aux2 = aux[t].IntersecaoReta(r);
 
-                if(aux2){
+                if(get<0>(aux2)){
                     tuple<Ponto*,Objeto*>aux3 = aux[t].IntersecaoReta(r);
                     double distancia_orig = 10000000;
                     Vector inte = Vector(get<0>(aux3)->x, get<0>(aux3)->y, get<0>(aux3)->z);
@@ -62,14 +62,6 @@ vector<vector<vector<double>>> RayCasting::Ray_Casting(Cenario cena, Ponto posic
                 matriz_de_cores[i][j] = intensidadePixel;
             }
             
-
-            
-
-
-
-
-
-
 
         }
     }

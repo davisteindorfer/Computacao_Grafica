@@ -1,9 +1,6 @@
 #include "Ponto.hpp"
-
 #include "Vector.hpp"
-
 #include "Objeto.hpp"
-
 #include "Camera.hpp"
 
 
