@@ -1,8 +1,8 @@
 #include <c++/math.h>
 #include <Eigen/core>
-#include "Transformações.hpp"
+#include "Transformacoes.hpp"
 
-Ponto Transformações::Translação(Ponto p, Vector t){
+Ponto Transformacoes::Translacao(Ponto p, Vector t){
     Eigen::Matrix4d matrizT;
     matrizT << 1, 0, 0, t.x,
                0, 1, 0, t.y,
@@ -18,7 +18,7 @@ Ponto Transformações::Translação(Ponto p, Vector t){
     return Ponto(MatrizR[1],MatrizR[2],MatrizR[3]);
 };
 
-Vector Transformações::Translação(Vector p, Vector t){
+Vector Transformacoes::Translacao(Vector p, Vector t){
     Eigen::Matrix4d matrizT;
     matrizT << 1, 0, 0, t.x,
                0, 1, 0, t.y,
@@ -34,7 +34,7 @@ Vector Transformações::Translação(Vector p, Vector t){
     return Vector(MatrizR[1],MatrizR[2],MatrizR[3]);
 };
 
-Ponto Transformações::Rotação(double theta, Ponto p, string eixo){
+Ponto Transformacoes::Rotacao(double theta, Ponto p, string eixo){
 
     if (eixo == "x"){
 
@@ -93,7 +93,7 @@ Ponto Transformações::Rotação(double theta, Ponto p, string eixo){
 
 
 
-Vector Transformações::Rotação(double theta, Vector p, string eixo){
+Vector Transformacoes::Rotacao(double theta, Vector p, string eixo){
 if (eixo == "x"){
 
         Eigen::Matrix4d matrizT;
@@ -148,7 +148,7 @@ if (eixo == "x"){
     }
 }
 
-Ponto Transformações::Escala(Ponto p, Vector t){
+Ponto Transformacoes::Escala(Ponto p, Vector t){
     Eigen::Matrix4d matrizT;
     matrizT << t.x, 0, 0, 0,
                0, t.y, 0, 0,
@@ -165,7 +165,7 @@ Ponto Transformações::Escala(Ponto p, Vector t){
 }
 
 
-Vector Transformações::Escala(Vector p, Vector t){
+Vector Transformacoes::Escala(Vector p, Vector t){
     Eigen::Matrix4d matrizT;
     matrizT << t.x, 0, 0, 0,
                0, t.y, 0, 0,
@@ -182,7 +182,7 @@ Vector Transformações::Escala(Vector p, Vector t){
 }
 
 
-Ponto Transformações::Cisalhamento(double theta, Ponto p, string eixo){
+Ponto Transformacoes::Cisalhamento(double theta, Ponto p, string eixo){
     if (eixo == "x_horizontal"){
 
         Eigen::Matrix4d matrizT;
@@ -248,7 +248,7 @@ Ponto Transformações::Cisalhamento(double theta, Ponto p, string eixo){
 }
 
 
-Vector Transformações::Cisalhamento(double theta, Vector p, string eixo){
+Vector Transformacoes::Cisalhamento(double theta, Vector p, string eixo){
     if (eixo == "x_horizontal"){
 
         Eigen::Matrix4d matrizT;
@@ -318,7 +318,7 @@ Vector Transformações::Cisalhamento(double theta, Vector p, string eixo){
     return Vector(MatrizR[1],MatrizR[2],MatrizR[3]);
     }
 }
-Ponto Transformações::Reflexão(Ponto p , string eixo){
+Ponto Transformacoes::Reflexao(Ponto p , string eixo){
     if (eixo == "x_y"){
 
         Eigen::Matrix4d matrizT;
@@ -369,7 +369,7 @@ Ponto Transformações::Reflexão(Ponto p , string eixo){
 
 
 
-Vector Transformações::Reflexão(Vector p , string eixo){
+Vector Transformacoes::Reflexao(Vector p , string eixo){
     if (eixo == "x_y"){
 
         Eigen::Matrix4d matrizT;

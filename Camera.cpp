@@ -1,9 +1,9 @@
 #include "Ponto.hpp"
-#include "Ponto.cpp"
+
 #include "Vector.hpp"
-#include "Vector.cpp"
+
 #include "Objeto.hpp"
-#include "Objeto.cpp"
+
 #include "Camera.hpp"
 
 
@@ -12,16 +12,16 @@ Camera::Camera(Vector eye, Vector lookat, Vector viewup){
     this->lookat = lookat;
     this->viewup = viewup;
     Vector aux = Vector(lookat, eye);
-    kc = operações::NormalizaVetor(aux);
-    aux = operações::ProdutoVetorial(Vector(eye, viewup),kc);
-    ic = operações::NormalizaVetor(aux);
-    jc = operações::ProdutoVetorial(kc,ic);
+    kc = operacoes::NormalizaVetor(aux);
+    aux = operacoes::ProdutoVetorial(Vector(eye, viewup),kc);
+    ic = operacoes::NormalizaVetor(aux);
+    jc = operacoes::ProdutoVetorial(kc,ic);
 };
 Ponto Camera::Mundo_camera(Ponto p){
     Eigen::Matrix4d matrizT;
-    matrizT << ic.x, ic.y, ic.z, - operações::ProdutoEscalar(eye, ic),
-               jc.x, jc.y, jc.z, - operações::ProdutoEscalar(eye, jc),
-               kc.x, kc.y, kc.z, - operações::ProdutoEscalar(eye, kc),
+    matrizT << ic.x, ic.y, ic.z, - operacoes::ProdutoEscalar(eye, ic),
+               jc.x, jc.y, jc.z, - operacoes::ProdutoEscalar(eye, jc),
+               kc.x, kc.y, kc.z, - operacoes::ProdutoEscalar(eye, kc),
                0, 0, 0, 1;
     Eigen::Matrix <double, 4, 1> MatrizP;
     MatrizP << p.x,
@@ -35,8 +35,8 @@ Ponto Camera::Mundo_camera(Ponto p){
 
 void Camera::atualizaCamera(){
     Vector aux = Vector(lookat, eye);
-    kc = operações::NormalizaVetor(aux);
-    aux = operações::ProdutoVetorial(Vector(eye, viewup),kc);
-    ic = operações::NormalizaVetor(aux);
-    jc = operações::ProdutoVetorial(kc,ic);
+    kc = operacoes::NormalizaVetor(aux);
+    aux = operacoes::ProdutoVetorial(Vector(eye, viewup),kc);
+    ic = operacoes::NormalizaVetor(aux);
+    jc = operacoes::ProdutoVetorial(kc,ic);
 };

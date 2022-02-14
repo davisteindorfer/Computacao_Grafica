@@ -1,4 +1,4 @@
-#include "Material.hpp";
+#include "Material.hpp"
 
 Material::Material() {}
 Material::Material(vector<double> Ka1,vector<double> Kd1,vector<double> Ks1, double M){

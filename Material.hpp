@@ -1,7 +1,7 @@
-#ifndef Material_HPP;
-#define Material_HPP;
-#include "Vector.hpp";
-#include <vector>;
+#ifndef _MATERIA_HPP
+#define _MATERIA_HPP
+#include "Vector.hpp"
+#include <vector>
 using namespace std;
 class Material{
     public:

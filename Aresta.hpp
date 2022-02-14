@@ -1,7 +1,7 @@
-#ifndef Aresta_HPP;
-#define Aresta_HPP;
+#ifndef _ARESTA_HPP
+#define _ARESTA_HPP
 #include "Ponto.hpp"
-#include "Ponto.cpp"
+
 
 class Aresta{
     public:

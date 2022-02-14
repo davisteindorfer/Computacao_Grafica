@@ -1,14 +1,12 @@
-#ifndef objeto_HPP;
-#define objeto_HPP;
+#ifndef _OBJETO_HPP
+#define _OBJETO_HPP
 #include "Face.hpp"
-#include "Face.cpp"
 #include "Aresta.hpp"
-#include "Aresta.cpp"
 #include "Ponto.hpp"
-#include "Ponto.cpp"
 #include <iostream>
 #include <vector>
 #include "Material.hpp"
+#include "Face.hpp"
 using namespace std;
 
 

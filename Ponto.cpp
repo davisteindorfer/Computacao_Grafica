@@ -1,10 +1,6 @@
-#include "Ponto.hpp";
+#include "Ponto.hpp"
 
-Ponto::Ponto(){
-    this->x = 0;
-    this->y = 0;
-    this->z = 0;
-}
+Ponto::Ponto() {}
 Ponto::Ponto(double x1, double y1, double z1) {
     this->x = x1;
     this->y = y1;
@@ -34,13 +30,5 @@ void Ponto::operator+(Ponto p){
     this->y = this->y + p.y;
     this->z = this->z + p.z;
 };
-void Ponto::operator*(Ponto p){
-    
-};
-Ponto Ponto::operator-(Ponto p){
-    
-}
-void Ponto::operator/(Ponto p){
 
-};
 

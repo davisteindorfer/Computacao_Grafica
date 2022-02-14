@@ -1,8 +1,9 @@
-#ifndef Luz_HPP;
-#define Luz_HPP;
+#ifndef _LUZ_HPP
+#define _LUZ_HPP
 #include <vector>
 using namespace std;
-
+#include "Vector.hpp"
+#include "Objeto.hpp"
 class Luz{
     public:
     vector<double> intensidade_ambiente = vector<double> (3);
@@ -14,4 +15,4 @@ class Luz{
     Vector calcularIntensidadeEspecular(Ponto, Material, Vector);
 };
 
-#endif;
+#endif

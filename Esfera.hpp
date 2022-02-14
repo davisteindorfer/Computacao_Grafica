@@ -1,6 +1,6 @@
-#ifndef ESFERA_HPP
-#define ESFERA_HPP
-#include "operações.hpp"
+#ifndef _ESFERA_HPP
+#define _ESFERA_HPP
+#include "operacoes.hpp"
 #include "Objeto.hpp"
 #include <tuple>
 class Esfera :public Objeto{

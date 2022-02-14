@@ -1,9 +1,3 @@
-#include "Face.hpp"
-#include "Face.cpp"
-#include "Aresta.hpp"
-#include "Aresta.cpp"
-#include "Ponto.hpp"
-#include "Ponto.cpp"
 #include "Objeto.hpp"
 #include <iostream>
 #include <vector>

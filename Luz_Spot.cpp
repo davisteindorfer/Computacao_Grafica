@@ -7,18 +7,18 @@ Luz_Spot::Luz_Spot(vector<double> IA, vector<double> ID, vector<double> IE, Pont
         this->intensidade_difusa.push_back(ID[i]);
         this->intensidade_especular.push_back(IE[i]);
     }
-    this->posição_luz = posicao;
-    this->direção = direcao;
+    this->posicao_luz = posicao;
+    this->direcao = direcao;
     this->angulo = angulo;
 }
 
 double Luz_Spot::calcular_Fator_Difuso(Ponto p, Vector normal) {
-    Vector aux = Vector(p, posição_luz);
-    Vector l = operações::NormalizaVetor(aux);
-    if(operações::ProdutoEscalar(-l, direção) > cos(angulo)){
+    Vector aux = Vector(p, posicao_luz);
+    Vector l = operacoes::NormalizaVetor(aux);
+    if(operacoes::ProdutoEscalar(-l, direcao) > cos(angulo)){
         return 0 ;
     }
-    double fatorDifuso = operações::ProdutoEscalar(l, normal);
+    double fatorDifuso = operacoes::ProdutoEscalar(l, normal);
     if(fatorDifuso < 0){
         return 0;
     }
@@ -36,16 +36,16 @@ Vector Luz_Spot::calcular_Intensidade_Difusa(Ponto p, Material m, Vector normal)
 }
 
 double Luz_Spot::calcularFatorEspecular(Ponto ponto_intercecao, Vector normal) {
-    Vector aux = Vector(ponto_intercecao, posição_luz);
-    Vector l = operações::NormalizaVetor(aux);
+    Vector aux = Vector(ponto_intercecao, posicao_luz);
+    Vector l = operacoes::NormalizaVetor(aux);
 
-    Vector r = (2 * ((operações::ProdutoEscalar(l, normal))*normal)) - l;
+    Vector r = (2 * ((operacoes::ProdutoEscalar(l, normal))*normal)) - l;
     Vector v = Vector(ponto_intercecao, Ponto(0,0,0));
 
-    if(operações::ProdutoEscalar(-l, direção) > cos(angulo)){
+    if(operacoes::ProdutoEscalar(-l, direcao) > cos(angulo)){
         return 0 ;
     }
-    double fatorEspecular = operações::ProdutoEscalar(v, r);
+    double fatorEspecular = operacoes::ProdutoEscalar(v, r);
     if(fatorEspecular < 0){
         return 0;
     }

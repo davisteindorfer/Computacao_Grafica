@@ -1,6 +1,6 @@
-#ifndef CILINDRO_HPP
-#define CILINDRO_HPP
-#include "operações.hpp"
+#ifndef _CILINDRO_HPP
+#define _CILINDRO_HPP
+#include "operacoes.hpp"
 #include "Objeto.hpp"
 #include "Plano.hpp"
 

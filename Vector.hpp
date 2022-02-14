@@ -1,7 +1,8 @@
-#ifndef Vector_HPP;
-#define Vector_HPP;
-#include "Ponto.hpp";
-#include "Ponto.cpp";
+#ifndef _VECTOR_HPP
+#define _VECTOR_HPP
+
+#include "Ponto.hpp"
+
 #include <cmath>
 class Vector{
     public:
@@ -10,6 +11,7 @@ class Vector{
         double z;
     Vector();
     Vector(Ponto*, Ponto*);
+    Vector(Ponto, Ponto*);
     Vector(Vector, Vector);
     Vector(Ponto, Ponto);
     Vector(double, double, double);

@@ -1,14 +1,12 @@
-#ifndef Face_HPP;
-#define Face_HPP;
+#ifndef _FACE_HPP
+#define _FACE_HPP
 #include "Aresta.hpp"
-#include "Aresta.cpp"
 #include "Plano.hpp"
 #include "Vector.hpp"
 
 class Face{
     public:
-        Aresta p1p2,p2p3,p1p3;
-    
+    Aresta p1p2,p2p3,p1p3;
     Face(Aresta,Aresta,Aresta);
     void set_aresta1(Aresta);
     void set_aresta2(Aresta);

@@ -1,9 +1,10 @@
-#include "Aresta.hpp";
-#include "Ponto.hpp";
-#include "Ponto.cpp";
+#include "Aresta.hpp"
+#include "Ponto.hpp"
+
 
 
 Aresta::Aresta(){};
+
 Aresta::Aresta(Ponto a1, Ponto b1){
     this->a = a1;
     this->b = b1;

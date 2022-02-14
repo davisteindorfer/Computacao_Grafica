@@ -1,10 +1,10 @@
-#ifndef Ponto_HPP;
-#define Ponto_HPP;
+#ifndef _PONTO_HPP
+#define _PONTO_HPP
 
 
 class Ponto{
     public:
-        double x,y,z;
+    double x,y,z;
     
     Ponto();
     Ponto(double, double, double);
@@ -15,9 +15,7 @@ class Ponto{
     double get_y();
     double get_z();
     void operator+(Ponto p);
-    void operator*(Ponto p);
-    Ponto operator-(Ponto p);
-    void operator/(Ponto p);
+
 
 };
 

@@ -1,5 +1,5 @@
-#ifndef RAY_H
-#define RAY_H
+#ifndef _RAIO_HPP
+#define _RAIO_HPP
 
 #include "Vector.hpp"
 

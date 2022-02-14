@@ -1,20 +1,20 @@
 #include <c++/cmath>
 #include "Luz_Pontual.hpp"
 
-Luz_Pontual::Luz_Pontual(vector<double> IA, vector<double> ID, vector<double> IE, Ponto posiçãoLuz){
+Luz_Pontual::Luz_Pontual(vector<double> IA, vector<double> ID, vector<double> IE, Ponto posicaoLuz){
     for(int i = 0; i < 3; i++){
         this->intensidade_ambiente.push_back(IA[i]);
         this->intensidade_difusa.push_back(ID[i]);
         this->intensidade_especular.push_back(IE[i]);
     }
-    this->posição_luz = posiçãoLuz;
+    this->posicao_luz = posicaoLuz;
 }
 
 double Luz_Pontual::calcular_Fator_Difuso(Ponto ponto_intercecao, Vector normal){
-    Vector aux = Vector(ponto_intercecao, posição_luz);
-    Vector l = operações::NormalizaVetor(aux);
+    Vector aux = Vector(ponto_intercecao, posicao_luz);
+    Vector l = operacoes::NormalizaVetor(aux);
 
-    double fatorDifuso = operações::ProdutoEscalar(normal, l);
+    double fatorDifuso = operacoes::ProdutoEscalar(normal, l);
     if(fatorDifuso < 0){
         return 0;
     }
@@ -32,14 +32,14 @@ Vector Luz_Pontual::calcular_Intensidade_Difusa(Ponto p, Material m, Vector norm
 }
 
 double Luz_Pontual::calcularFatorEspecular(Ponto ponto_intercecao, Vector normal){
-    Vector aux = Vector(ponto_intercecao, posição_luz);
-    Vector l = operações::NormalizaVetor(aux);
+    Vector aux = Vector(ponto_intercecao, posicao_luz);
+    Vector l = operacoes::NormalizaVetor(aux);
 
-    Vector r = ((operações::ProdutoEscalar(l, normal)) * 2 * normal) - l;
+    Vector r = ((operacoes::ProdutoEscalar(l, normal)) * 2 * normal) - l;
     Vector v = Vector(ponto_intercecao, Ponto(0,0,0));
 
-    double fatorEspecular = operações::ProdutoEscalar(operações::NormalizaVetor(v),
-        operações::NormalizaVetor(r));
+    double fatorEspecular = operacoes::ProdutoEscalar(operacoes::NormalizaVetor(v),
+        operacoes::NormalizaVetor(r));
 
     if(fatorEspecular < 0){
         return 0;

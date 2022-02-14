@@ -23,7 +23,7 @@ bool Cone::ValidacaoPontoCone(Ponto* vertice, Ponto* p_int){
     //escalar_tratamento e vetor_aux_tratamento
     Vector vetor_aux_tratamento(vertice->x - p_int->x, vertice->y - p_int->y, vertice->z - p_int->z);
 
-    double escalar_tratamento = operações::ProdutoEscalar(vetor_aux_tratamento,this->normal);
+    double escalar_tratamento = operacoes::ProdutoEscalar(vetor_aux_tratamento,this->normal);
     
     bool tratamento_int = false;
     if(escalar_tratamento < 0.00000000001 && escalar_tratamento > 0.00000000001)
@@ -38,7 +38,7 @@ bool Cone::ValidacaoPontoCone(Ponto* vertice, Ponto* p_int){
 Ponto* Cone::IntersecaoRetaBase(Ponto* centro, Ponto& pP0, Vector &pVetor0){
     Raio r = Raio(pP0, pVetor0);
     Ponto* p_int = base->IntersecaoRaioPlano(r);
-    return operações::distanciaEntrePontos(p_int,centro) <= raio? p_int : nullptr;
+    return operacoes::distanciaEntrePontos(p_int,centro) <= raio? p_int : nullptr;
 }
 
 
@@ -52,7 +52,7 @@ Ponto* Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
         this->centro.z + vetor_aux.z);
 
     //vetor d normalizado
-    Vector d = operações::NormalizaVetor(pVetor0);
+    Vector d = operacoes::NormalizaVetor(pVetor0);
 
     //cos alfa
     double cos_alfa = this->altura / (sqrt(pow(this->altura,2) + pow(raio,2)));
@@ -61,16 +61,16 @@ Ponto* Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
     Vector v(vertice.x - pP0.x, vertice.y - pP0.y, vertice.z - pP0.z);
 
     //a
-    double a = pow(operações::ProdutoEscalar(d,this->normal),2) - (operações::ProdutoEscalar(d,d)*pow(cos_alfa,2));
+    double a = pow(operacoes::ProdutoEscalar(d,this->normal),2) - (operacoes::ProdutoEscalar(d,d)*pow(cos_alfa,2));
 
     //b
-    double b = (operações::ProdutoEscalar(v,d) * pow(cos_alfa,2))
-        - (operações::ProdutoEscalar(v,this->normal))
-        * (operações::ProdutoEscalar(d,this->normal));
+    double b = (operacoes::ProdutoEscalar(v,d) * pow(cos_alfa,2))
+        - (operacoes::ProdutoEscalar(v,this->normal))
+        * (operacoes::ProdutoEscalar(d,this->normal));
 
     //c
-    double c = pow(operações::ProdutoEscalar(v,this->normal),2)
-        - (operações::ProdutoEscalar(v,v)*pow(cos_alfa,2));
+    double c = pow(operacoes::ProdutoEscalar(v,this->normal),2)
+        - (operacoes::ProdutoEscalar(v,v)*pow(cos_alfa,2));
 
     //delta
     double delta = b*b - a*c;
@@ -101,8 +101,8 @@ Ponto* Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
             t_int2 = -c / 2*b;
         }
         
-        Ponto* p_teste1 = operações::equacao_reta(t_int1,Raio(pP0,d));
-        Ponto* p_teste2 = operações::equacao_reta(t_int2,Raio(pP0,d));
+        Ponto* p_teste1 = operacoes::equacao_reta(t_int1,Raio(pP0,d));
+        Ponto* p_teste2 = operacoes::equacao_reta(t_int2,Raio(pP0,d));
         tratamento_int1 = this->ValidacaoPontoCone(&vertice,p_teste1);
         tratamento_int2 = this->ValidacaoPontoCone(&vertice,p_teste2);
 
@@ -111,28 +111,28 @@ Ponto* Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
         else if((p_teste1 = Cone::IntersecaoRetaBase(&this->centro, pP0, d)) != nullptr)
             p_int1 = p_teste1;
 
-        double p_int1_dis = p_int1 != nullptr ? operações::distanciaEntrePontos(p_int1, &pP0) : 0;
+        double p_int1_dis = p_int1 != nullptr ? operacoes::distanciaEntrePontos(p_int1, &pP0) : 0;
 
         if (tratamento_int2) {
-            if(p_int1 == nullptr || operações::distanciaEntrePontos(p_teste2, &pP0) < p_int1_dis) {
+            if(p_int1 == nullptr || operacoes::distanciaEntrePontos(p_teste2, &pP0) < p_int1_dis) {
                 p_int1 = p_teste2;
             }
         }
         else if((p_teste2 = Cone::IntersecaoRetaBase(&this->centro, pP0, d)) != nullptr &&
-            operações::distanciaEntrePontos(p_teste2, &pP0) < p_int1_dis){
+            operacoes::distanciaEntrePontos(p_teste2, &pP0) < p_int1_dis){
             p_int1 = p_teste2;
         }
 
     }
     else if (delta == 0 && (b!=0 && a!=0)){
         t_int1 = (-b + sqrt(delta))/a;
-        Ponto* p_teste1 = operações::equacao_reta(t_int1,Raio(pP0,d));
+        Ponto* p_teste1 = operacoes::equacao_reta(t_int1,Raio(pP0,d));
         tratamento_int1 = this->ValidacaoPontoCone(&vertice,p_teste1);
 
         if (tratamento_int1)
             p_int1 = p_teste1;
         if((p_teste1 = Cone::IntersecaoRetaBase(&this->centro, pP0, d)) != nullptr &&
-            (p_int1 == nullptr || operações::distanciaEntrePontos(p_teste1, &pP0) < operações::distanciaEntrePontos(p_int1, &pP0))) {
+            (p_int1 == nullptr || operacoes::distanciaEntrePontos(p_teste1, &pP0) < operacoes::distanciaEntrePontos(p_int1, &pP0))) {
 
             p_int1 = Cone::IntersecaoRetaBase(&this->centro, pP0, d);
         }
@@ -151,17 +151,17 @@ Vector Cone::calcularNormal(Ponto* pi){
 
     Vector PImenosCB = Vector(centro, *pi);
 
-    double aux = operações::ProdutoEscalar(PImenosCB, normal);
-    Ponto* pe = operações::equacao_reta(aux, Raio(centro, normal));
+    double aux = operacoes::ProdutoEscalar(PImenosCB, normal);
+    Ponto* pe = operacoes::equacao_reta(aux, Raio(centro, normal));
 
 
     Vector PImenosPE = Vector(*pe, *pi);
     Vector PiV = Vector(*pi, *Vertice);
 
-    Vector T = operações::ProdutoVetorial(PiV, PImenosPE);
-    Vector N = operações::ProdutoVetorial(T, PiV);
+    Vector T = operacoes::ProdutoVetorial(PiV, PImenosPE);
+    Vector N = operacoes::ProdutoVetorial(T, PiV);
 
     delete pe;
     delete Vertice;
-    return operações::NormalizaVetor(N);
+    return operacoes::NormalizaVetor(N);
 }

@@ -1,5 +1,5 @@
-#ifndef Canvas_H
-#define Canvas_H
+#ifndef _CANVAS_HPP
+#define _CANVAS_HPP
 #include <vector>
 using namespace std;
 

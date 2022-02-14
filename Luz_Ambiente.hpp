@@ -1,5 +1,5 @@
-#ifndef Luzambiente_HPP;
-#define Luzambiente_HPP;
+#ifndef _LUZ_AMBIENTE_HPP
+#define _LUZ_AMBIENTE_HPP
 #include <vector>
 using namespace std;
 #include "Luz.hpp"
@@ -10,4 +10,4 @@ class Luz_Ambiente : public Luz{
     vector<double> Intensidade_luz_ambiente(Material);
 };
 
-#endif;
+#endif

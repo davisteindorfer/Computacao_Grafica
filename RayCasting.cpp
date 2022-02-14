@@ -1,8 +1,8 @@
 #include "RayCasting.hpp"
-#include "Cenário.hpp"
+#include "Cenario.hpp"
 #include <tuple>
 
-vector<vector<vector<double>>> RayCasting::Ray_Casting(Cenário cena, Ponto posicao_olho, Canvas frame, Luz_Ambiente Luz_Ambiente){
+vector<vector<vector<double>>> RayCasting::Ray_Casting(Cenario cena, Ponto posicao_olho, Canvas frame, Luz_Ambiente Luz_Ambiente){
 
     vector<double> intensidadePixel;
     bool auxDefinido = false;
@@ -29,7 +29,7 @@ vector<vector<vector<double>>> RayCasting::Ray_Casting(Cenário cena, Ponto posi
             Raio r = Raio(posicao_olho, ponto_canvas);
             vector<Objeto> aux = cena.lista_de_objetos();
 
-            //percorrendo objetos do cenario para checar se há interecessão com o raio
+            //percorrendo objetos do cenario para checar se há interecessao com o raio
 
             for(int t = 0; t < aux.size(); t++){
                 tuple<Ponto*,Objeto*> * aux2 = &aux[t].IntersecaoReta(r);
@@ -38,8 +38,8 @@ vector<vector<vector<double>>> RayCasting::Ray_Casting(Cenário cena, Ponto posi
                     tuple<Ponto*,Objeto*>aux3 = aux[t].IntersecaoReta(r);
                     double distancia_orig = 10000000;
                     Vector inte = Vector(get<0>(aux3)->x, get<0>(aux3)->y, get<0>(aux3)->z);
-                    if(sqrt(operações::ProdutoEscalar(Vector(0,0,0),inte) < distancia_orig)){
-                        distancia_orig = sqrt(operações::ProdutoEscalar(Vector(0,0,0),inte));
+                    if(sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte) < distancia_orig)){
+                        distancia_orig = sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte));
                         objeto_interceptado = get<1>(aux3);
                         auxDefinido = true;
                         p_intercecao = Ponto(inte.x,inte.y,inte.z);

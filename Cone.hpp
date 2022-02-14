@@ -1,6 +1,6 @@
-#ifndef CONE_HPP
-#define CONE_HPP
-#include "operações.hpp"
+#ifndef _CONE_HPP
+#define _CONE_HPP
+#include "operacoes.hpp"
 #include "Objeto.hpp"
 #include "Plano.hpp"
 

@@ -1,7 +1,6 @@
 #include "Face.hpp"
-#include "Aresta.hpp"
-#include "Aresta.cpp"
-#include "operações.hpp"
+#include "operacoes.hpp"
+
 
 Face::Face(Aresta a1,Aresta a2,Aresta a3){
     this->p1p2 = a1;
@@ -33,20 +32,20 @@ bool Face::ValidacaoPontoFace(Vector P1P,Vector P2P,Vector P3P){
     Vector p1_p2 = Vector(p1p2.a, p1p2.b);
     Vector p2_p3 = Vector(p2p3.a, p2p3.b);
     Vector p1_p3 = Vector(p1p3.a, p1p3.b);
-    double validacao = operações::ProdutoEscalar(operações::ProdutoVetorial(p1_p2, P1P),
-                                                  operações::ProdutoVetorial(p1_p2, p1_p3));
+    double validacao = operacoes::ProdutoEscalar(operacoes::ProdutoVetorial(p1_p2, P1P),
+                                                  operacoes::ProdutoVetorial(p1_p2, p1_p3));
     if(validacao < 0){
         return false;
     }
 
-    validacao = operações::ProdutoEscalar(operações::ProdutoVetorial(p2_p3, P2P),
-                                                  operações::ProdutoVetorial(p1_p2, p1_p3));
+    validacao = operacoes::ProdutoEscalar(operacoes::ProdutoVetorial(p2_p3, P2P),
+                                                  operacoes::ProdutoVetorial(p1_p2, p1_p3));
     if(validacao < 0){
         return false;
     }
 
-    validacao = operações::ProdutoEscalar(operações::ProdutoVetorial(p1_p3, P3P),
-                                           operações::ProdutoVetorial(p1_p2, p1_p3));
+    validacao = operacoes::ProdutoEscalar(operacoes::ProdutoVetorial(p1_p3, P3P),
+                                           operacoes::ProdutoVetorial(p1_p2, p1_p3));
 
     return validacao > 0;
 };

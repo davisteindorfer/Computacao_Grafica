@@ -1,13 +1,13 @@
-#ifndef RAYCasting_HPP
-#define RAYCasting_HPP
+#ifndef _RAYCASTING_HPP
+#define _RAYCASTING_HPP
 
-#include "Cenário.hpp"
+#include "Cenario.hpp"
 #include "Camera.hpp"
 #include "Canvas.hpp"
 
 class RayCasting{
     public:
-    static vector<vector<vector<double>>> Ray_Casting(Cenário, Ponto, Canvas, Luz_Ambiente);
+    static vector<vector<vector<double>>> Ray_Casting(Cenario, Ponto, Canvas, Luz_Ambiente);
 };
 
 #endif

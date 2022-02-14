@@ -1,6 +1,6 @@
-#include "Cubo.hpp";
-#include "operações.hpp";
-#include <tuple>
+#include "Cubo.hpp"
+#include "operacoes.hpp"
+
 Cubo::Cubo(vector<Ponto> lista_pontos, vector<Aresta> lista_arestas, vector<Face> lista_faces,Material m, int id){
     this->Lista_De_Pontos = lista_pontos;
     this->Lista_De_Aresta = lista_arestas;
@@ -9,12 +9,13 @@ Cubo::Cubo(vector<Ponto> lista_pontos, vector<Aresta> lista_arestas, vector<Face
     this->id = id;
 };
 
-tuple<Ponto*,Objeto*> Cubo::intercessãoReta(Raio r){
-    vector< pair<Ponto*, Face> > intFace;
+tuple<Ponto*,Objeto*> Cubo::IntersecaoReta(Raio r){
+    vector<Ponto*> intPonto;
+    vector<Face> intface;
     for(int i = 0; i < Lista_De_Faces.size(); i++){
         Vector vetor1 = Vector(Lista_De_Faces[i].get_p1p2().get_a(),Lista_De_Faces[i].get_p1p2().get_b());
         Vector vetor2 = Vector(Lista_De_Faces[i].get_p2p3().get_a(),Lista_De_Faces[i].get_p2p3().get_b());
-        normal = operações::ProdutoVetorial(vetor1, vetor2);
+        normal = operacoes::ProdutoVetorial(vetor1, vetor2);
         Plano p = Plano(Lista_De_Faces[i].get_p1p2().get_a(), normal);
         Ponto* ponto = p.IntersecaoRaioPlano(r);
 
@@ -25,7 +26,9 @@ tuple<Ponto*,Objeto*> Cubo::intercessãoReta(Raio r){
             Vector p3p = Vector(Lista_De_Faces[i].get_p1p3().get_b(), *ponto);
 
             if (Lista_De_Faces[i].ValidacaoPontoFace(p1p,p2p,p3p)) {
-                intFace.emplace_back(make_pair(ponto, Lista_De_Faces[i]));
+
+                intPonto.push_back(ponto);
+                intface.push_back(Lista_De_Faces[i]);
                 normal = p.normal;
 
             } else {
@@ -34,62 +37,62 @@ tuple<Ponto*,Objeto*> Cubo::intercessãoReta(Raio r){
                 p3p = Vector(Lista_De_Faces[i + 1].get_p1p3().get_b(), *ponto);
 
                 if (Lista_De_Faces[i + 1].ValidacaoPontoFace(p1p,p2p,p3p)) {
-
-                    intFace.emplace_back(make_pair(ponto, &Lista_De_Faces[i + 1]));
+                    intPonto.push_back(ponto);
+                    intface.push_back(Lista_De_Faces[i + 1]);
 
                     Vector vetor11 = Vector(Lista_De_Faces[i + 1].get_p1p2().get_a(),Lista_De_Faces[i + 1].get_p1p2().get_b());
 
                     Vector vetor22 = Vector(Lista_De_Faces[i + 1].get_p2p3().get_a(),Lista_De_Faces[i + 1].get_p2p3().get_b());
 
-                    normal = operações::ProdutoVetorial(vetor11, vetor22);
+                    normal = operacoes::ProdutoVetorial(vetor11, vetor22);
                 } else {
                     delete ponto;
                 }
             }
         }
-        if(intFace.size() == 2){
+        if(intface.size() == 2){
             break;
         }
         
     }
-    if(!intFace.empty()) {
-        if (intFace.size() >= 2) {
-            if (operações::distanciaEntrePontos(r.get_origin(), intFace[0].first) <
-                operações::distanciaEntrePontos(r.get_origin(), intFace[1].first)) {
-                Vector vetor11 = Vector(intFace[0].second.get_p1p2().get_a(),intFace[0].second.get_p1p2().get_b());
+    if(!intface.empty()) {
+        if (intface.size() >= 2) {
+            if (operacoes::distanciaEntrePontos(r.get_origin(), intPonto[0]) <
+                operacoes::distanciaEntrePontos(r.get_origin(), intPonto[1])) {
+                Vector vetor11 = Vector(intface[0].get_p1p2().get_a(),intface[0].get_p1p2().get_b());
 
-                Vector vetor22 = Vector(intFace[0].second.get_p2p3().get_a(),intFace[0].second.get_p2p3().get_b());
+                Vector vetor22 = Vector(intface[0].get_p2p3().get_a(),intface[0].get_p2p3().get_b());
                
-                normal = operações::ProdutoVetorial(vetor11, vetor22);
+                normal = operacoes::ProdutoVetorial(vetor11, vetor22);
             }
             else {
-                Vector vetor11 = Vector(intFace[1].second.get_p1p2().get_a(),intFace[1].second.get_p1p2().get_b());
+                Vector vetor11 = Vector(intface[1].get_p1p2().get_a(),intface[1].get_p1p2().get_b());
 
-                Vector vetor22 = Vector(intFace[1].second.get_p2p3().get_a(),intFace[1].second.get_p2p3().get_b());
+                Vector vetor22 = Vector(intface[1].get_p2p3().get_a(),intface[1].get_p2p3().get_b());
                
-                normal = operações::ProdutoVetorial(vetor11, vetor22);
+                normal = operacoes::ProdutoVetorial(vetor11, vetor22);
             }
         }
         else {
-                Vector vetor11 = Vector(intFace[0].second.get_p1p2().get_a(),intFace[0].second.get_p1p2().get_b());
+                Vector vetor11 = Vector(intface[0].get_p1p2().get_a(),intface[0].get_p1p2().get_b());
 
-                Vector vetor22 = Vector(intFace[0].second.get_p2p3().get_a(),intFace[0].second.get_p2p3().get_b());
+                Vector vetor22 = Vector(intface[0].get_p2p3().get_a(),intface[0].get_p2p3().get_b());
                
-                normal = operações::ProdutoVetorial(vetor11, vetor22);
+                normal = operacoes::ProdutoVetorial(vetor11, vetor22);
         }
     }
-    if(intFace.empty()) {
+    if(intface.empty()) {
         return make_tuple(nullptr, this);
     }
-    else if(intFace.size() == 1) {
-        return make_tuple(intFace[0].first, this);
+    else if(intface.size() == 1) {
+        return make_tuple(intPonto[0], this);
     }
     else {
-        if(operações::distanciaEntrePontos(intFace[0].first, r.get_origin()) < operações::distanciaEntrePontos(intFace[1].first, r.get_origin())) {
-            return make_tuple(intFace[0].first, this);
+        if(operacoes::distanciaEntrePontos(intPonto[0], r.get_origin()) < operacoes::distanciaEntrePontos(intPonto[1], r.get_origin())) {
+            return make_tuple(intPonto[0], this);
         }
         else {
-            return make_tuple(intFace[1].first, this);
+            return make_tuple(intPonto[1], this);
         }
     }
 
