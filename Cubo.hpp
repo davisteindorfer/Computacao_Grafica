@@ -9,7 +9,7 @@ class Cubo : public Objeto {
     public:
     Vector normal;
     Cubo(vector<Ponto>, vector<Aresta>, vector<Face>,Material, int);
-    tuple<Ponto*,Cubo*> intercessãoCuboReta(Raio);
+    tuple<Ponto*,Objeto*> intercessãoReta(Raio);
     Vector calcularNormal(Ponto* pi);
 };
 

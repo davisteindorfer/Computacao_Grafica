@@ -12,8 +12,9 @@ Cone::Cone(double pAltura, double pRaio, Ponto pCentro, Vector pNormal, Material
     this->id = id;
 };
 
-tuple<Ponto*,Cone*> Cone::IntersecaoReta(Ponto* pP0, Vector &pV0) {
-
+tuple<Ponto*,Objeto*> Cone::IntersecaoReta(Raio r) {
+    Ponto* pP0 = &r.orig;
+    Vector pV0 = r.dir;
     return make_pair(PrimeiraIntersecao(*pP0, pV0), this);
 }
 

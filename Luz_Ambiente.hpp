@@ -6,7 +6,7 @@ using namespace std;
 #include "Material.hpp"
 class Luz_Ambiente : public Luz{
     public:
-    Luz_Ambiente(vector<double>, vector<double>, vector<double>);
+    Luz_Ambiente(vector<double>);
     vector<double> Intensidade_luz_ambiente(Material);
 };
 

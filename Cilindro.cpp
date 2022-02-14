@@ -18,7 +18,9 @@ Cilindro::Cilindro(double pAltura, double pRaio, Ponto pCentro, Vector pNormal, 
     this->id = id;
 }
 
-tuple<Ponto*,Cilindro*> Cilindro::IntersecaoReta(Ponto* pP0, Vector &pV0){
+tuple<Ponto*,Objeto*> Cilindro::IntersecaoReta(Raio r){
+    Ponto* pP0 = &r.orig;
+    Vector pV0 = r.dir;
     Ponto* p_int1 = PrimeiraIntersecao(*pP0, pV0);
     return make_tuple(p_int1, this);
 }

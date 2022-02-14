@@ -20,7 +20,7 @@ class Objeto{
          Material material;
          int id;
     Objeto();
-    Objeto(vector<Ponto>, vector<Aresta>, vector<Face>,Material, int);
+    Objeto(vector<Ponto>, vector<Aresta>, vector<Face>, Material, int);
     void set_lista_pontos(vector<Ponto>);
     void set_lista_arestas(vector<Aresta>);
     void set_lista_faces(vector<Face>);
@@ -28,6 +28,7 @@ class Objeto{
     vector<Aresta> get_lista_arestas();
     vector<Face> get_lista_faces();
     Vector calcularNormal(Ponto* pi);
+    tuple<Ponto*,Objeto*> IntersecaoReta(Raio);
 };
 
 

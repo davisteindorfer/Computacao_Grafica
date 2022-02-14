@@ -9,7 +9,7 @@ Cubo::Cubo(vector<Ponto> lista_pontos, vector<Aresta> lista_arestas, vector<Face
     this->id = id;
 };
 
-tuple<Ponto*,Cubo*> Cubo::intercessãoCuboReta(Raio r){
+tuple<Ponto*,Objeto*> Cubo::intercessãoReta(Raio r){
     vector< pair<Ponto*, Face> > intFace;
     for(int i = 0; i < Lista_De_Faces.size(); i++){
         Vector vetor1 = Vector(Lista_De_Faces[i].get_p1p2().get_a(),Lista_De_Faces[i].get_p1p2().get_b());

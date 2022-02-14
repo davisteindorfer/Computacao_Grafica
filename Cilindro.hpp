@@ -14,7 +14,7 @@ public:
     Plano baseSup;
     Vector normal;
     Cilindro(double pAltura, double pRaio, Ponto pCentro, Vector pNormal, Material m, int);
-    tuple<Ponto*,Cilindro*> IntersecaoReta(Ponto* pP0, Vector &pV0);
+    tuple<Ponto*,Objeto*> IntersecaoReta(Raio);
     Ponto* PrimeiraIntersecao(Ponto &pP0, Vector &pVetor0);
     bool ValidacaoPontoLateral(Ponto &p_int);
     Vector calcularNormal(Ponto* pi);

@@ -9,7 +9,7 @@ public:
     float raio;
     Ponto* centro;
     Esfera(double, Ponto*,Material, int);
-    tuple<Ponto*,Esfera*> IntersecaoReta(Ponto*, Vector);
+    tuple<Ponto*,Objeto*> IntersecaoReta(Raio);
     Vector calcularNormal(Ponto* pi);
 };
 

@@ -31,12 +31,12 @@ Vector Luz_Pontual::calcular_Intensidade_Difusa(Ponto p, Material m, Vector norm
     return Id;
 }
 
-double Luz_Pontual::calcularFatorEspecular(Ponto ponto_intercecao, Vector normal, Ponto olho){
+double Luz_Pontual::calcularFatorEspecular(Ponto ponto_intercecao, Vector normal){
     Vector aux = Vector(ponto_intercecao, posição_luz);
     Vector l = operações::NormalizaVetor(aux);
 
     Vector r = ((operações::ProdutoEscalar(l, normal)) * 2 * normal) - l;
-    Vector v = Vector(ponto_intercecao, olho);
+    Vector v = Vector(ponto_intercecao, Ponto(0,0,0));
 
     double fatorEspecular = operações::ProdutoEscalar(operações::NormalizaVetor(v),
         operações::NormalizaVetor(r));
@@ -48,13 +48,13 @@ double Luz_Pontual::calcularFatorEspecular(Ponto ponto_intercecao, Vector normal
     return fatorEspecular;
 };
 
-Vector Luz_Pontual::calcularIntensidadeEspecular(Ponto p, Material m, Vector normal, Ponto olho){
+Vector Luz_Pontual::calcularIntensidadeEspecular(Ponto p, Material m, Vector normal){
     Vector Is;
     Is.x = intensidade_especular[0] * m.ks[0];
     Is.y = intensidade_especular[1] * m.ks[1];
     Is.z = intensidade_especular[2] * m.ks[2];
 
-    Is *=  pow(calcularFatorEspecular(p,normal,olho), m.m);
+    Is *=  pow(calcularFatorEspecular(p,normal), m.m);
     return Is;
 };
 

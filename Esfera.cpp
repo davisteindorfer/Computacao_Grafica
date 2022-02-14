@@ -7,7 +7,10 @@ Esfera::Esfera(double Raio, Ponto* Centro,Material m, int id){
     this->material = m;
     this->id = id;
 };
-tuple<Ponto*,Esfera*> Esfera::IntersecaoReta(Ponto* pP0, Vector pV0){
+tuple<Ponto*,Objeto*> Esfera::IntersecaoReta(Raio r){
+    Ponto* pP0 = &r.orig;
+    Vector pV0 = r.dir;
+
     Ponto* p_t_int1 = nullptr;
     Ponto* p_t_int2 = nullptr;
     double t_int1, t_int2;
