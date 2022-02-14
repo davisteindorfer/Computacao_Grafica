@@ -1,13 +1,13 @@
 #include "Cenario.hpp"
 #include "Transformacoes.hpp"
 
-std::vector<Objeto> Cenario::lista_de_objetos(){
-
+std::vector<Objeto*> Cenario::lista_de_objetos(){
+    vector<Objeto*> Lista_objetos;
     // Chao
     Ponto ponto_1_chao = Ponto(0,0,-10);
     Ponto ponto_2_chao = Ponto(20,0,-10);
     Ponto ponto_3_chao = Ponto(20,0,10);
-    Ponto ponto_4_chao = Ponto(0,0,100);
+    Ponto ponto_4_chao = Ponto(0,0,10);
 
     vector<Ponto> lista_pontos_chao;
 
@@ -52,6 +52,8 @@ std::vector<Objeto> Cenario::lista_de_objetos(){
 
     Cubo Chao = Cubo(lista_pontos_chao,lista_arestas_chao,lista_faces_chao,material_pearl, 1);
 
+    Lista_objetos.push_back(&Chao);
+    
     // parede
 
     Ponto ponto_1_parede = ponto_1_chao;
@@ -65,6 +67,11 @@ std::vector<Objeto> Cenario::lista_de_objetos(){
     lista_pontos_parede.emplace_back(ponto_2_parede);
     lista_pontos_parede.emplace_back(ponto_3_parede);
     lista_pontos_parede.emplace_back(ponto_4_parede);
+
+    lista_pontos.emplace_back(ponto_1_parede);
+    lista_pontos.emplace_back(ponto_2_parede);
+    lista_pontos.emplace_back(ponto_3_parede);
+    lista_pontos.emplace_back(ponto_4_parede);
 
     Aresta aresta_1_parede = Aresta(ponto_1_parede,ponto_2_parede);
     Aresta aresta_2_parede = Aresta(ponto_2_parede,ponto_3_parede);
@@ -88,5 +95,20 @@ std::vector<Objeto> Cenario::lista_de_objetos(){
     lista_faces_parede.emplace_back(face_1_parede);
     lista_faces_parede.emplace_back(face_2_parede);
 
+    Cubo Parede = Cubo(lista_pontos_parede,lista_arestas_parede,lista_faces_parede,material_pearl, 2);
+    Lista_objetos.push_back(&Parede);
 
+    return Lista_objetos;
+}
+
+std::vector<Luz*> Cenario::lista_de_luzes(){
+    vector<Luz*> lista_luzes;
+    vector<double> ia = {0,0,0};
+    vector<double> id = {0.3,0.3,0.3};
+    vector<double> is = {0.4,0.4,0.4};
+    Ponto p = Ponto(20,10,10);
+    Luz_Pontual l = Luz_Pontual(ia,id,is,p);
+    lista_luzes.push_back(&l);
+    lista_pontos.push_back(p);
+    return lista_luzes;
 }

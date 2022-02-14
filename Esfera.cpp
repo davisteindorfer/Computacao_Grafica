@@ -3,9 +3,10 @@
 
 Esfera::Esfera(double Raio, Ponto* Centro,Material m, int id){
     this->raio = Raio;
-    this->centro = Centro;
+    this->centro1 = Centro;
     this->material = m;
     this->id = id;
+    this->name = "Esfera";
 };
 tuple<Ponto*,Objeto*> Esfera::IntersecaoReta(Raio r){
     Ponto* pP0 = &r.orig;
@@ -17,7 +18,7 @@ tuple<Ponto*,Objeto*> Esfera::IntersecaoReta(Raio r){
     // A*t_int² + B*t_int + C = 0
     Vector pV0N = operacoes::NormalizaVetor(pV0);
     // C0P0 eh o P0 - C0
-    Vector C0P0 = Vector(*this->centro, *pP0);
+    Vector C0P0 = Vector(*this->centro1, *pP0);
     // A = u*u
     double produtoA = operacoes::ProdutoEscalar(pV0N,pV0N);
     // B = 2 * (P0 - C0) * u
@@ -50,7 +51,7 @@ tuple<Ponto*,Objeto*> Esfera::IntersecaoReta(Raio r){
 
 Vector Esfera::calcularNormal(Ponto* p){
     Vector v;
-    v = Vector(*this->centro,*p);
+    v = Vector(*this->centro1,*p);
     v = operacoes::NormalizaVetor(v);
     return v;
 }

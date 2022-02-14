@@ -10,8 +10,8 @@ Luz_Pontual::Luz_Pontual(vector<double> IA, vector<double> ID, vector<double> IE
     this->posicao_luz = posicaoLuz;
 }
 
-double Luz_Pontual::calcular_Fator_Difuso(Ponto ponto_intercecao, Vector normal){
-    Vector aux = Vector(ponto_intercecao, posicao_luz);
+double Luz_Pontual::calcular_Fator_Difuso(Ponto* ponto_intercecao, Vector normal){
+    Vector aux = Vector(ponto_intercecao, &posicao_luz);
     Vector l = operacoes::NormalizaVetor(aux);
 
     double fatorDifuso = operacoes::ProdutoEscalar(normal, l);
@@ -21,7 +21,7 @@ double Luz_Pontual::calcular_Fator_Difuso(Ponto ponto_intercecao, Vector normal)
     return fatorDifuso;
 }
 
-Vector Luz_Pontual::calcular_Intensidade_Difusa(Ponto p, Material m, Vector normal){
+Vector Luz_Pontual::calcular_Intensidade_Difusa(Ponto* p, Material m, Vector normal){
     Vector Id;
     Id.x = intensidade_difusa[0] * m.kd[0];
     Id.y = intensidade_difusa[1] * m.kd[1];
@@ -31,12 +31,12 @@ Vector Luz_Pontual::calcular_Intensidade_Difusa(Ponto p, Material m, Vector norm
     return Id;
 }
 
-double Luz_Pontual::calcularFatorEspecular(Ponto ponto_intercecao, Vector normal){
-    Vector aux = Vector(ponto_intercecao, posicao_luz);
+double Luz_Pontual::calcularFatorEspecular(Ponto* ponto_intercecao, Vector normal){
+    Vector aux = Vector(ponto_intercecao, &posicao_luz);
     Vector l = operacoes::NormalizaVetor(aux);
 
     Vector r = ((operacoes::ProdutoEscalar(l, normal)) * 2 * normal) - l;
-    Vector v = Vector(ponto_intercecao, Ponto(0,0,0));
+    Vector v = Vector(ponto_intercecao, new Ponto(0,0,0));
 
     double fatorEspecular = operacoes::ProdutoEscalar(operacoes::NormalizaVetor(v),
         operacoes::NormalizaVetor(r));
@@ -48,7 +48,7 @@ double Luz_Pontual::calcularFatorEspecular(Ponto ponto_intercecao, Vector normal
     return fatorEspecular;
 };
 
-Vector Luz_Pontual::calcularIntensidadeEspecular(Ponto p, Material m, Vector normal){
+Vector Luz_Pontual::calcularIntensidadeEspecular(Ponto* p, Material m, Vector normal){
     Vector Is;
     Is.x = intensidade_especular[0] * m.ks[0];
     Is.y = intensidade_especular[1] * m.ks[1];

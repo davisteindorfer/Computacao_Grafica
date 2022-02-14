@@ -16,8 +16,8 @@
 class Cenario{
     public:
     vector<Ponto> lista_pontos;
-    std::vector<Objeto> lista_de_objetos();
-    std::vector<Luz> lista_de_luzes();
+    std::vector<Objeto*> lista_de_objetos();
+    std::vector<Luz*> lista_de_luzes();
 
 };
 

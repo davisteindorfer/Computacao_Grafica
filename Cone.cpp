@@ -10,6 +10,7 @@ Cone::Cone(double pAltura, double pRaio, Ponto pCentro, Vector pNormal, Material
     this->base = new Plano(centro, normal);
     this->material = m;
     this->id = id;
+    this->name = "Cone";
 };
 
 tuple<Ponto*,Objeto*> Cone::IntersecaoReta(Raio r) {

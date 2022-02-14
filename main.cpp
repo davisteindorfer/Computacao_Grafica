@@ -4,14 +4,13 @@
 #include "Camera.hpp"
 #include "operacoes.hpp"
 #include <GL/glut.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glext.h>
+#include <windows.h>
+
 
 int main(int argc, char* argv[]){
     Cenario cena = Cenario();
-    vector<Objeto> lista_obj = cena.lista_de_objetos();
-    vector<Luz> lista_luz = cena.lista_de_luzes();
+    vector<Objeto*> lista_obj = cena.lista_de_objetos();
+    vector<Luz*> lista_luz = cena.lista_de_luzes();
     Vector eye = Vector(20,10,20);
     Vector lookat = Vector(-20,10,20);
     Vector viewup = Vector(20,11,20);

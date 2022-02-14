@@ -17,6 +17,13 @@ class Objeto{
          vector<Face> Lista_De_Faces;
          Material material;
          int id;
+         string name;
+         double raio;
+         Ponto* centro1;
+         double altura;
+         Plano* base;
+         Ponto centro;
+         Vector normal;
     Objeto();
     Objeto(vector<Ponto>, vector<Aresta>, vector<Face>, Material, int);
     void set_lista_pontos(vector<Ponto>);

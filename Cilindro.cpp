@@ -16,6 +16,7 @@ Cilindro::Cilindro(double pAltura, double pRaio, Ponto pCentro, Vector pNormal, 
     centroSup = Ponto{centro.x + H_n.x, centro.y + H_n.y, centro.z + H_n.z};
     baseSup = Plano(centroSup, normal);
     this->id = id;
+    this->name = "Cilindro";
 }
 
 tuple<Ponto*,Objeto*> Cilindro::IntersecaoReta(Raio r){

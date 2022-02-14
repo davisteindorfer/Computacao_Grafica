@@ -11,9 +11,9 @@ class Luz_Pontual : public Luz {
     public:
     Ponto posicao_luz;
     Luz_Pontual(vector<double>, vector<double>, vector<double>, Ponto);
-    double calcular_Fator_Difuso(Ponto, Vector);
-    Vector calcular_Intensidade_Difusa(Ponto, Material, Vector);
-    double calcularFatorEspecular(Ponto, Vector);
-    Vector calcularIntensidadeEspecular(Ponto, Material, Vector) ;
+    double calcular_Fator_Difuso(Ponto*, Vector);
+    Vector calcular_Intensidade_Difusa(Ponto*, Material, Vector);
+    double calcularFatorEspecular(Ponto*, Vector);
+    Vector calcularIntensidadeEspecular(Ponto*, Material, Vector) ;
 };
 #endif

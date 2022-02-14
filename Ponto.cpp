@@ -1,6 +1,11 @@
 #include "Ponto.hpp"
 
 Ponto::Ponto() {}
+Ponto::Ponto(Ponto* p) {
+    this->x = p->x;
+    this->y = p->y;
+    this->z = p->z;
+};
 Ponto::Ponto(double x1, double y1, double z1) {
     this->x = x1;
     this->y = y1;

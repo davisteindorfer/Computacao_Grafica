@@ -11,8 +11,8 @@ class Luz{
     vector<double> intensidade_especular = vector<double> (3);
     Luz();
     Luz(vector<double>, vector<double>, vector<double>);
-    Vector calcular_Intensidade_Difusa(Ponto, Material, Vector);
-    Vector calcularIntensidadeEspecular(Ponto, Material, Vector);
+    Vector calcular_Intensidade_Difusa(Ponto*, Material, Vector);
+    Vector calcularIntensidadeEspecular(Ponto*, Material, Vector);
 };
 
 #endif

@@ -7,6 +7,7 @@
 
 class RayCasting{
     public:
+    RayCasting();
     static vector<vector<vector<double>>> Ray_Casting(Cenario, Ponto, Canvas, Luz_Ambiente);
 };
 

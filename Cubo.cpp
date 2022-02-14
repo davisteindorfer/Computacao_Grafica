@@ -7,6 +7,7 @@ Cubo::Cubo(vector<Ponto> lista_pontos, vector<Aresta> lista_arestas, vector<Face
     this->Lista_De_Faces = lista_faces;
     this->material = m;
     this->id = id;
+    this->name = "Cubo";
 };
 
 tuple<Ponto*,Objeto*> Cubo::IntersecaoReta(Raio r){
