@@ -4,6 +4,7 @@
 
 
 Objeto::Objeto() {}
+Objeto::Objeto(Material m, int id, string string): material(m),id(id),name(string){};
 Objeto::Objeto(vector<Ponto> lista_pontos, vector<Aresta> lista_arestas, vector<Face> lista_faces, Material m, int id){
     this->Lista_De_Pontos = lista_pontos;
     this->Lista_De_Aresta = lista_arestas;

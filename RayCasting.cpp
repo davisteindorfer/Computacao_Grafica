@@ -36,64 +36,20 @@ vector<vector<vector<double>>> RayCasting::Ray_Casting(Cenario cena, Ponto posic
 
             for(int t = 0; t < listobj.size(); t++){
                 tuple<Ponto*,Objeto*> aux2;
-                if(listobj[t]->name == "Cubo"){
-                    Cubo Oi = Cubo(listobj[t]->Lista_De_Pontos,listobj[t]->Lista_De_Aresta,listobj[t]->Lista_De_Faces, listobj[t]->material, listobj[t]->id);
-                    aux2 = Oi.IntersecaoReta(r);
+
+                    aux2 = listobj[t]->IntersecaoReta(r);
                     if(get<0>(aux2)){
                     double distancia_orig = 10000000;
                     Vector inte = Vector(get<0>(aux2)->x, get<0>(aux2)->y, get<0>(aux2)->z);
-                    if(sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte) < distancia_orig)){
-                        distancia_orig = sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte));
-                        objeto_interceptado = get<1>(aux2);
-                        auxDefinido = true;
-                        
-                        p_intercecao = new Ponto(inte.x,inte.y,inte.z);
+                        if(sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte) < distancia_orig)){
+                            distancia_orig = sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte));
+                            objeto_interceptado = get<1>(aux2);
+                            auxDefinido = true;
+                            p_intercecao = new Ponto(inte.x,inte.y,inte.z);
                     }
-                }
-                }
-                if(listobj[t]->name == "Esfera"){
-                    Esfera Oi = Esfera(listobj[t]->raio,listobj[t]->centro1,listobj[t]->material, listobj[t]->id);
-                    aux2 = Oi.IntersecaoReta(r);
-                    if(get<0>(aux2)){
-                    double distancia_orig = 10000000;
-                    Vector inte = Vector(get<0>(aux2)->x, get<0>(aux2)->y, get<0>(aux2)->z);
-                    if(sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte) < distancia_orig)){
-                        distancia_orig = sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte));
-                        objeto_interceptado = get<1>(aux2);
-                        auxDefinido = true;
-                        p_intercecao = new Ponto(inte.x,inte.y,inte.z);
-                    }
-                }
-                }
-                if(listobj[t]->name == "Cone"){
-                    Cone Oi = Cone(listobj[t]->altura, listobj[t]->raio, listobj[t]->centro, listobj[t]->normal,listobj[t]->material, listobj[t]->id);
-                    aux2 = Oi.IntersecaoReta(r);
-                    if(get<0>(aux2)){
-                    double distancia_orig = 10000000;
-                    Vector inte = Vector(get<0>(aux2)->x, get<0>(aux2)->y, get<0>(aux2)->z);
-                    if(sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte) < distancia_orig)){
-                        distancia_orig = sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte));
-                        objeto_interceptado = get<1>(aux2);
-                        auxDefinido = true;
-                        p_intercecao = new Ponto(inte.x,inte.y,inte.z);
-                    }
-                }
-                }
-                if(listobj[t]->name == "Cilindro"){
-                    Cilindro Oi = Cilindro(listobj[t]->altura, listobj[t]->raio, listobj[t]->centro, listobj[t]->normal, listobj[t]->material, listobj[t]->id);
-                    aux2 = Oi.IntersecaoReta(r);
-                    if(get<0>(aux2)){
-                    double distancia_orig = 10000000;
-                    Vector inte = Vector(get<0>(aux2)->x, get<0>(aux2)->y, get<0>(aux2)->z);
-                    if(sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte) < distancia_orig)){
-                        distancia_orig = sqrt(operacoes::ProdutoEscalar(Vector(0,0,0),inte));
-                        objeto_interceptado = get<1>(aux2);
-                        auxDefinido = true;
-                        p_intercecao = new Ponto(inte.x,inte.y,inte.z);
-                    }
-                }
                 }
             }
+        
             if (auxDefinido){
                 intensidadePixel = Luz_Ambiente.Intensidade_luz_ambiente(objeto_interceptado->material);
                 for(int t= 0; t<listluz.size(); t++){

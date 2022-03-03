@@ -7,6 +7,7 @@
 #include <vector>
 #include "Material.hpp"
 #include "Face.hpp"
+#include <tuple>
 using namespace std;
 
 
@@ -18,13 +19,8 @@ class Objeto{
          Material material;
          int id;
          string name;
-         double raio;
-         Ponto* centro1;
-         double altura;
-         Plano* base;
-         Ponto centro;
-         Vector normal;
     Objeto();
+    Objeto(Material, int, string);
     Objeto(vector<Ponto>, vector<Aresta>, vector<Face>, Material, int);
     void set_lista_pontos(vector<Ponto>);
     void set_lista_arestas(vector<Aresta>);
@@ -32,8 +28,9 @@ class Objeto{
     vector<Ponto> get_lista_pontos();
     vector<Aresta> get_lista_arestas();
     vector<Face> get_lista_faces();
-    Vector calcularNormal(Ponto* pi);
-    tuple<Ponto*,Objeto*> IntersecaoReta(Raio);
+    virtual Vector calcularNormal(Ponto* pi) {};
+    virtual tuple<Ponto*,Objeto*> IntersecaoReta(Raio) {};
+    
 };
 
 

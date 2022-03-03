@@ -14,10 +14,10 @@ public:
 
     Cone(double pAltura, double pRaio, Ponto pCentro, Vector pNormal,Material m, int);
     bool ValidacaoPontoCone(Ponto* vertice, Ponto* p_int);
-    tuple<Ponto*,Objeto*> IntersecaoReta(Raio);
     Ponto* PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0);
     Ponto* IntersecaoRetaBase(Ponto* centro, Ponto& pP0, Vector &pVetor0);
     Vector calcularNormal(Ponto* pi);
+    tuple<Ponto*,Objeto*> IntersecaoReta(Raio);
 };
 
 #endif

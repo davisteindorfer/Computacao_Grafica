@@ -5,9 +5,11 @@
 #include <tuple>
 class Esfera :public Objeto{
 public:
+    double raio;
+    Ponto centro;
     Esfera(double, Ponto*,Material, int);
-    tuple<Ponto*,Objeto*> IntersecaoReta(Raio);
     Vector calcularNormal(Ponto* pi);
+    tuple<Ponto*,Objeto*> IntersecaoReta(Raio);
 };
 
 

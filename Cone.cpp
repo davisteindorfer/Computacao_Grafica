@@ -2,21 +2,16 @@
 #include "Cone.hpp"
 #include "Plano.hpp"
 #include <tuple>
-Cone::Cone(double pAltura, double pRaio, Ponto pCentro, Vector pNormal, Material m, int id){
-    this->altura = pAltura;
-    this->raio = pRaio;
-    this->centro = pCentro;
-    this->normal = pNormal;
-    this->base = new Plano(centro, normal);
-    this->material = m;
-    this->id = id;
-    this->name = "Cone";
+Cone::Cone(double pAltura, double pRaio, Ponto pCentro, Vector pNormal, Material m, int id) : altura(pAltura), raio(pRaio),
+                                                                          centro(pCentro), normal(pNormal), Objeto(m,id,"cone"){
+    base = new Plano(centro, normal);
 };
 
 tuple<Ponto*,Objeto*> Cone::IntersecaoReta(Raio r) {
     Ponto* pP0 = &r.orig;
     Vector pV0 = r.dir;
-    return make_pair(PrimeiraIntersecao(*pP0, pV0), this);
+    static Ponto* p = Cone::PrimeiraIntersecao(*pP0, pV0);
+    return make_pair(Cone::PrimeiraIntersecao(*pP0, pV0), this);
 }
 
 bool Cone::ValidacaoPontoCone(Ponto* vertice, Ponto* p_int){
@@ -70,11 +65,11 @@ Ponto* Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
         * (operacoes::ProdutoEscalar(d,this->normal));
 
     //c
-    double c = pow(operacoes::ProdutoEscalar(v,this->normal),2)
+    double c1 = pow(operacoes::ProdutoEscalar(v,this->normal),2)
         - (operacoes::ProdutoEscalar(v,v)*pow(cos_alfa,2));
 
     //delta
-    double delta = b*b - a*c;
+    double delta = b*b - a*c1;
 
     if (delta < 0.00000000001 && delta >-0.00000000001 )
         delta = 0;
@@ -82,8 +77,8 @@ Ponto* Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
         a = 0;
     if (b < 0.00000000001 && b>-0.00000000001)
         b = 0;
-    if (c < 0.00000000001 && c>-0.00000000001)
-        c = 0;
+    if (c1 < 0.00000000001 && c1>-0.00000000001)
+        c1 = 0;
 
     /*  Δ > 0 tem 2 intersecoes
         Δ = 0 tem 1 intersecao
@@ -98,8 +93,8 @@ Ponto* Cone::PrimeiraIntersecao(Ponto &pP0,Vector &pVetor0) {
             t_int1 = (-b + sqrt(delta))/a;
             t_int2 = (-b - sqrt(delta))/a;
         }else{
-            t_int1 = -c / 2*b;
-            t_int2 = -c / 2*b;
+            t_int1 = -c1 / 2*b;
+            t_int2 = -c1 / 2*b;
         }
         
         Ponto* p_teste1 = operacoes::equacao_reta(t_int1,Raio(pP0,d));

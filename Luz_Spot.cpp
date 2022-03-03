@@ -31,7 +31,7 @@ Vector Luz_Spot::calcular_Intensidade_Difusa(Ponto* p, Material m, Vector normal
     Id.y = intensidade_difusa[1] * m.kd[1];
     Id.z = intensidade_difusa[2] * m.kd[2];
 
-    Id *= calcular_Fator_Difuso(p, normal);
+    Id *= Luz_Spot::calcular_Fator_Difuso(p, normal);
     return Id;
 }
 
