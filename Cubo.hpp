@@ -8,8 +8,8 @@ class Cubo : public Objeto {
     public:
     Vector normal;
     Cubo(vector<Ponto>, vector<Aresta>, vector<Face>,Material, int);
-    virtual Vector calcularNormal(Ponto* pi);
-    virtual tuple<Ponto*,Objeto*> IntersecaoReta(Raio);
+    Vector calcularNormal(Ponto* pi);
+    tuple<Ponto*,Objeto*> IntersecaoReta(Raio);
 };
 
 #endif

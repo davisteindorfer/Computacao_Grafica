@@ -20,4 +20,4 @@ Ponto Aresta::get_a(){
 };
 Ponto Aresta::get_b(){
     return b;
-};    
+};   

@@ -4,7 +4,8 @@
 #include "Camera.hpp"
 #include "operacoes.hpp"
 #include <GL/glut.h>
-#include <windows.h>
+#include "renderizacao.hpp"
+
 
 
 int main(int argc, char* argv[]){
@@ -23,21 +24,7 @@ int main(int argc, char* argv[]){
     vector<double> aux_luz_ambiente = {0.5,0.5,0,5};
     Luz_Ambiente luzAmbiente = Luz_Ambiente(aux_luz_ambiente);
     vector<vector<vector<double>>> matriz_cores = RayCasting::Ray_Casting(cena, Ponto(0,0,0), frame, luzAmbiente);
-
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowSize(800,800);
-    glutInitWindowPosition(100,100);
-    glutCreateWindow("Trabalho CG");
-    GLubyte* pixels;
-    for(int i=0;i < matriz_cores.size(); i++){
-        for(int j=0;j < matriz_cores[i].size(); j++){
-            pixels[0] = matriz_cores[i][j][0];
-            pixels[1] = matriz_cores[i][j][1];
-            pixels[2] = matriz_cores[i][j][2];
-            glDrawPixels(1,1,GL_RGB, GL_UNSIGNED_BYTE,pixels);
-        }
-    }
+    renderizar(&frame, matriz_cores);
 
 
 }
